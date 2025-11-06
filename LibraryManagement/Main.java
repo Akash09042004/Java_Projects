@@ -1,9 +1,8 @@
-// Main.java
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Library library = new Library();
+        library library = new library();
         Scanner sc = new Scanner(System.in);
         int choice;
 
@@ -15,18 +14,25 @@ public class Main {
             System.out.println("4. Return Book");
             System.out.println("5. Exit");
             System.out.print("Enter choice: ");
+
+            // Handle invalid input
+            while (!sc.hasNextInt()) {
+                System.out.println("❌ Invalid input. Enter a number between 1-5.");
+                sc.next(); // discard invalid input
+                System.out.print("Enter choice: ");
+            }
             choice = sc.nextInt();
 
             switch (choice) {
                 case 1:
                     System.out.print("Enter Book ID: ");
                     int id = sc.nextInt();
-                    sc.nextLine();
+                    sc.nextLine(); // consume newline
                     System.out.print("Enter Title: ");
                     String title = sc.nextLine();
                     System.out.print("Enter Author: ");
                     String author = sc.nextLine();
-                    library.addBook(new Book(id, title, author));
+                    library.addBook(new book(id, title, author));
                     break;
                 case 2:
                     library.displayBooks();
